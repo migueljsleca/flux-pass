@@ -1,0 +1,98 @@
+{
+  "version": 2,
+  "appId": "flux-pass",
+  "state": {
+    "values": {
+      "export.includeBackground": false,
+      "appearance.background": "#E9E7E3",
+      "canvas.workspaceBackground": "dots",
+      "card.theme": "mode3",
+      "card.presentedBy": true,
+      "holder.role": "media",
+      "holder.roleCustom": "",
+      "holder.firstName": "John",
+      "holder.lastName": "Smith",
+      "name.layout": "two",
+      "name.size": 1,
+      "name.y": 0,
+      "person.preset": "07",
+      "person.scale": 1,
+      "person.x": 0,
+      "person.y": 0,
+      "ferro.shape": "01",
+      "ferro.scale": 1,
+      "ferro.rotation": 0,
+      "ferro.x": 0,
+      "ferro.y": 0,
+      "strap.style": "theme",
+      "strap.text": "FLUX · STRANGE ATTRACTS",
+      "strap.color": "#01161E",
+      "strap.ink": "#ADBDFF",
+      "strap.clipColor": "#01161E",
+      "strap.length": 0.92,
+      "physics.gravity": 12,
+      "physics.drag": 0.6,
+      "view.layout": "two",
+      "view.zoom": 1,
+      "view.cameraY": 0,
+      "export.image.format": "png",
+      "export.image.resolution": "4k"
+    },
+    "canvas": {
+      "offset": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "height": 1080,
+        "unit": "px",
+        "width": 1920
+      },
+      "zoom": 95.74,
+      "mode": "finite"
+    },
+    "panels": {
+      "controls": {
+        "collapsedSections": {},
+        "offset": {
+          "x": 0,
+          "y": 0
+        },
+        "collapsed": false,
+        "scrollTop": 0
+      },
+      "layers": {
+        "offset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "timeline": {
+        "offset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "toolbar": {
+        "offset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "timeline": {
+      "currentTimeSeconds": 0,
+      "durationSeconds": 8,
+      "expanded": false,
+      "isLooping": true,
+      "isPlaying": true,
+      "selectedKeyframeId": null,
+      "keyframeGroups": []
+    },
+    "layers": [],
+    "selectedLayerId": null,
+    "mediaAssets": []
+  },
+  "resources": [],
+  "theme": "dark"
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "title": "Flux Pass",
+  "asset": "public/toolcraft/cover.png",
+  "generation": {
+    "kind": "app-composition",
+    "source": "src/app/app-composition.tsx",
+    "state": "app-cover-state.json",
+    "description": "Actual app result: the default FLUX passes (Carrot theme) in the two-badge layout \u2014 front (person 07, John Smith, Media) and back (FLUX, ferrofluid 01, presented by Spotify) \u2014 at rest after the drop-in, Background on #E9E7E3, exported through Export PNG at 4K (16:9) and downscaled to 1920x1080; no editor UI."
+  }
+}

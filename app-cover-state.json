@@ -1,0 +1,9 @@
+{
+  "values": "schema defaults",
+  "background": "#E9E7E3",
+  "includeBackground": true,
+  "pose": "physics rest after the drop-in (simulation asleep)",
+  "export": { "format": "png", "resolution": "4k" },
+  "canvas": { "width": 1920, "height": 1080 },
+  "downscaledTo": { "width": 1920, "height": 1080 }
+}

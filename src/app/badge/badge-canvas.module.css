@@ -1,0 +1,17 @@
+.canvas {
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  touch-action: none;
+  width: 100%;
+}
+
+.canvas[data-badge-hover="true"] {
+  cursor: grab;
+}
+
+.canvas[data-badge-grabbing="true"] {
+  cursor: grabbing;
+}
