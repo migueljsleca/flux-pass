@@ -20,7 +20,7 @@ describe("appSchema", () => {
     expect(moduleIds).not.toContain("video-export");
     const titles = appSchema.panels.controls?.sections.map((section) => section.title) ?? [];
     expect(titles).toEqual(
-      expect.arrayContaining(["Card", "Role", "Name", "Person", "Upload person", "Ferrofluid", "Artwork", "Lanyard", "Physics", "Camera"]),
+      expect.arrayContaining(["Card", "Role", "Name", "Person", "Upload person", "Ferrofluid", "Lanyard", "Physics", "Camera"]),
     );
   });
 

@@ -14,12 +14,10 @@ import {
 import { BADGE_TARGETS } from "./badge-params";
 
 export type BadgeImageAssets = Readonly<{
-  backArt: BadgeImageAsset | null;
-  frontArt: BadgeImageAsset | null;
   photo: BadgeImageAsset | null;
 }>;
 
-/** The uploaded photo / front art / back art, decoded once and shared with export. */
+/** The uploaded photo, decoded once and shared with export. */
 export function useBadgeImages(
   person: string,
   ferroShape: string,
@@ -28,8 +26,6 @@ export function useBadgeImages(
   const urls = useToolcraftMediaPresentationUrls(mediaAssets);
   const assets = React.useMemo<BadgeImageAssets>(
     () => ({
-      backArt: getBadgeImageAsset(mediaAssets, BADGE_TARGETS.backArt),
-      frontArt: getBadgeImageAsset(mediaAssets, BADGE_TARGETS.frontArt),
       photo: getBadgeImageAsset(mediaAssets, BADGE_TARGETS.photo),
     }),
     [mediaAssets],
@@ -38,7 +34,7 @@ export function useBadgeImages(
 
   React.useEffect(() => {
     let cancelled = false;
-    const all: (BadgeImageAsset | null)[] = [assets.photo, assets.frontArt, assets.backArt];
+    const all: (BadgeImageAsset | null)[] = [assets.photo];
     for (const asset of all) {
       if (!asset) continue;
       const url = urls.get(asset.id);
@@ -69,8 +65,6 @@ export function useBadgeImages(
 
   const images: BadgeArtImages = {
     ...getReadyBadgePresets(person, ferroShape),
-    backArt: getReadyBadgeImage(assets.backArt),
-    frontArt: getReadyBadgeImage(assets.frontArt),
     photo: getReadyBadgeImage(assets.photo),
   };
   return { assets, images };

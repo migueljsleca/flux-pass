@@ -26,8 +26,6 @@ export const BADGE_TARGETS = {
   ferroRotation: "ferro.rotation",
   ferroX: "ferro.x",
   ferroY: "ferro.y",
-  frontArt: "art.front",
-  backArt: "art.back",
   strapStyle: "strap.style",
   strapText: "strap.text",
   strapColor: "strap.color",

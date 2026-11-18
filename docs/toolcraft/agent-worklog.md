@@ -4,11 +4,21 @@
 
 Mode: product
 
-Flux Pass (formerly Event Pass): a WebGL (Three.js r185) 3D event badge on a fabric lanyard for the Spotify "See What You Hear" event. The badge drops in, swings with real physics and can be grabbed and thrown with the mouse or touch; holder details, photo, artwork, colours and lanyard print are editable; PNG/JPG export captures the pose on screen.
+Flux Pass (formerly Event Pass): a WebGL (Three.js r185) 3D event badge on a fabric lanyard for the Spotify "See What You Hear" event. The badge drops in, swings with real physics and can be grabbed and thrown with the mouse or touch; holder details, photo, ferrofluid shape, colours and lanyard print are editable; PNG/JPG export captures the pose on screen.
 
-Active change: pass-009
+Active change: pass-010
 
 ## Decision Trail
+
+### pass-010 — Artwork uploads removed
+
+- Change ID: pass-010
+- Entry type: focused
+- Request: "i dont need this" (screenshot of the Artwork section with its two upload boxes).
+- Changed owner: `badge-sections.ts` (Artwork section deleted), `app-schema.ts`, `badge-params.ts` (targets `art.front` / `art.back` removed), `badge-art.ts` (full-face override and its cover-draw helper removed; faces always use the template), `badge-media.ts` / `badge-images.ts` (only the person photo is an upload target), `badge-canvas.tsx` (front/back art data attributes), `badge-pipeline.ts`, `app-control-inventory.ts`, `app-acceptance-data.ts` (rows and product description), `app-schema.test.ts`. Also fixed pass-009, which had two "Verification:" lines.
+- User-visible result: the panel goes from Ferrofluid placement straight to Lanyard; the only upload left is Upload person.
+- Verification: `tsc` clean; `npx vitest run src`: 728 passed, 2 failed (known pass-002 fixed-output checks), 9 skipped; `ai:check`: only the known pass-002 exception; headless panel check shows no Artwork section and no page errors.
+- Risks: none new.
 
 ### pass-009 — Renamed to Flux Pass
 
@@ -18,7 +28,6 @@ Active change: pass-009
 - Changed owner: `app-identity.ts` (id `flux-pass`, title "Flux Pass"), `app-schema.ts` (panel title), `app-acceptance-data.ts` (productName), `app-defaults.json` (appId `flux-pass` so the user's saved defaults still apply), `badge-export.ts` (PNG/JPG file name `flux-pass`, resource keys), `badge-pipeline.ts` (runtime id), comments, `app-cover.json`, `package.json` / `package-lock.json` name, folder `event-pass` → `flux-pass` and the `.claude/launch.json` entry.
 - `index.html`: title and `toolcraft-app-title` meta changed to "Flux Pass" at the user's request ("Yes, break the rule"). Contract exception: the integrity checker (`scripts/check-toolcraft-integrity.mjs`) now reports `modified index.html` and `modified src/app/app-identity.ts` (both hash-protected), in addition to the known pass-002 boundary finding.
 - User-visible result: panel title "Flux Pass", exports download as `flux-pass.png`; the browser's per-app workspace (localStorage, keyed by app id) starts fresh from the saved defaults.
-- Verification: see focused checks after the move.
 - Verification: dev server restarted from `flux-pass/` and verified its identity with the new title; tab reads "Flux Pass"; clean headless load with both badges, grab and layout switch, no page errors; `npx vitest run src`: 728 passed, 2 failed (known pass-002 checks).
 - Risks: Risk: the integrity check flags `index.html` and `app-identity.ts` until the app is regenerated from Toolcraft with the new identity.
 

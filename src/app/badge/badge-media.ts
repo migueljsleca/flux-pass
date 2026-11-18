@@ -4,8 +4,8 @@ import type { BadgeArtImages, BadgeImage } from "./badge-art";
 import { getBadgePresetUrl, getReadyBadgePreset, loadBadgePreset } from "./badge-presets";
 import { BADGE_TARGETS } from "./badge-params";
 
-/** Upload targets that feed the card artwork. */
-export const BADGE_IMAGE_TARGETS = [BADGE_TARGETS.photo, BADGE_TARGETS.frontArt, BADGE_TARGETS.backArt] as const;
+/** Upload targets that feed the card artwork (just the person photo). */
+export const BADGE_IMAGE_TARGETS = [BADGE_TARGETS.photo] as const;
 export type BadgeImageTarget = (typeof BADGE_IMAGE_TARGETS)[number];
 
 /** Longest edge of a decoded upload (keeps texture memory modest). */
@@ -128,11 +128,9 @@ export function loadBadgeImage(
 /** Decoded uploads for a runtime state (never decodes, only reads the cache). */
 export function getBadgeUploadsForState(
   mediaAssets: readonly ToolcraftMediaAsset[] | undefined,
-): Pick<BadgeArtImages, "backArt" | "frontArt" | "photo"> {
+): Pick<BadgeArtImages, "photo"> {
   const read = (target: BadgeImageTarget) => getReadyBadgeImage(getBadgeImageAsset(mediaAssets, target));
   return {
-    backArt: read(BADGE_TARGETS.backArt),
-    frontArt: read(BADGE_TARGETS.frontArt),
     photo: read(BADGE_TARGETS.photo),
   };
 }

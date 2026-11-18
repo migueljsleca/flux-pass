@@ -290,9 +290,7 @@ function BadgeCanvasSurface({
     <canvas
       className={styles.canvas}
       data-badge-backing={`${backing.width}x${backing.height}`}
-      data-badge-back-art={describeBadgeImage(assets.backArt)}
       data-badge-canvas=""
-      data-badge-front-art={describeBadgeImage(assets.frontArt)}
       data-badge-grabbing={String(grabbing)}
       data-badge-hover={String(hovering)}
       data-badge-photo={describeBadgeImage(assets.photo)}

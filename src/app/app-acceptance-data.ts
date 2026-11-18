@@ -64,9 +64,9 @@ export const appProductReadiness: ToolcraftProductReadiness = {
   mode: "product",
   productName: "Flux Pass",
   productSummary:
-    "A 3D event badge on a fabric lanyard: it drops in, swings with real physics and can be grabbed and thrown with the mouse or touch, with editable holder details, artwork, colours and lanyard print.",
+    "A 3D event badge on a fabric lanyard: it drops in, swings with real physics and can be grabbed and thrown with the mouse or touch, with editable holder details, ferrofluid shape, colours and lanyard print.",
   requestedBehavior:
-    "Show a 3D ID badge hanging from a lanyard, let people play with it by dragging and throwing it, switch the name, photo and artwork, and export the pose as a PNG.",
+    "Show a 3D ID badge hanging from a lanyard, let people play with it by dragging and throwing it, switch the name, photo and ferrofluid shape, and export the pose as a PNG.",
   viewInteraction: {
     authority: { kind: "explicit-user-request", requestQuote: dragRequest },
     mode: "fixed-camera",
@@ -130,8 +130,6 @@ const sliderRows: readonly [string, string][] = [
 
 const uploadRows: readonly [string, string][] = [
   [T.photo, "The uploaded image replaces the preset person; removing it brings the preset back."],
-  [T.frontArt, "The uploaded artwork replaces the whole front; removing it restores the template."],
-  [T.backArt, "The uploaded artwork replaces the back; removing it restores the template."],
 ];
 
 const badgeAcceptance: readonly ToolcraftComponentAcceptance[] = [

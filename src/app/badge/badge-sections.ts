@@ -240,19 +240,6 @@ export const badgeFerroPlacementSection: Section = {
   title: "Ferrofluid placement",
 };
 
-export const badgeArtworkSection: Section = {
-  controls: {
-    frontArt: upload(
-      T.frontArt,
-      "Front artwork",
-      "Replaces the whole front design (1280 x 1800, 32:45). Remove it to go back to the template.",
-    ),
-    backArt: upload(T.backArt, "Back artwork", "Replaces the back of the card (1280 x 1800, 32:45)."),
-  },
-  id: "artwork",
-  title: "Artwork",
-};
-
 export const badgeLanyardSection: Section = {
   controls: {
     strapStyle: {

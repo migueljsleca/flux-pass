@@ -43,8 +43,6 @@ export const BADGE_CHANGE_TARGETS = [
   T.person,
   T.photo,
   T.ferroShape,
-  T.frontArt,
-  T.backArt,
   T.strapStyle,
   T.strapText,
   T.strapColor,

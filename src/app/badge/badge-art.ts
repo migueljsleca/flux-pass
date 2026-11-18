@@ -52,10 +52,8 @@ export type BadgeImage = Readonly<{
 }>;
 
 export type BadgeArtImages = Readonly<{
-  backArt: BadgeImage | null;
   /** Selected ferrofluid shape. */
   ferro: BadgeImage | null;
-  frontArt: BadgeImage | null;
   /** Uploaded photo; replaces the preset person when present. */
   photo: BadgeImage | null;
   /** Selected preset person. */
@@ -84,16 +82,6 @@ function createContext(width: number, height: number): [OffscreenCanvas, Context
 
 function setFont(context: Context, size: number): void {
   context.font = `700 ${size}px ${BADGE_DISPLAY_FONT}`;
-}
-
-/** Draws `image` to cover the rect (centre crop), like CSS object-fit: cover. */
-function drawCover(context: Context, image: BadgeImage, x: number, y: number, width: number, height: number): void {
-  const scale = Math.max(width / image.width, height / image.height);
-  const sw = width / scale;
-  const sh = height / scale;
-  const sx = (image.width - sw) / 2;
-  const sy = (image.height - sh) / 2;
-  context.drawImage(image.source, sx, sy, sw, sh, x, y, width, height);
 }
 
 /** Draws `image` contained in a box centred on (cx, cy), scaled and rotated about its centre. */
@@ -238,10 +226,6 @@ export function drawBadgeFront(params: BadgeParams, images: BadgeArtImages): Off
   const [canvas, context] = createContext(W, H);
   context.fillStyle = params.cardColor;
   context.fillRect(0, 0, W, H);
-  if (images.frontArt) {
-    drawCover(context, images.frontArt, 0, 0, W, H);
-    return canvas;
-  }
   // Layer order follows the Figma frame (bottom to top).
   drawPerson(context, params, images);
   if (params.roleText) {
@@ -261,10 +245,6 @@ export function drawBadgeBack(params: BadgeParams, images: BadgeArtImages): Offs
   const [canvas, context] = createContext(W, H);
   context.fillStyle = params.cardColor;
   context.fillRect(0, 0, W, H);
-  if (images.backArt) {
-    drawCover(context, images.backArt, 0, 0, W, H);
-    return canvas;
-  }
   drawFlux(context, params);
   drawFerro(context, params, images);
   if (params.presentedBy) {
@@ -332,8 +312,6 @@ export function getBadgeFaceKey(params: BadgeParams, images: BadgeArtImages): st
     imageKey(images.photo),
     imageKey(images.person),
     imageKey(images.ferro),
-    imageKey(images.frontArt),
-    imageKey(images.backArt),
   ]);
 }
 

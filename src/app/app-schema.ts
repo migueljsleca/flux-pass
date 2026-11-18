@@ -3,7 +3,6 @@ import { defineToolcraft, imageExportModule, mediaSourceModule } from "@/toolcra
 import appDefaults from "./app-defaults.json" with { type: "json" };
 import { appIdentity } from "./app-identity";
 import {
-  badgeArtworkSection,
   badgeBackgroundSection,
   badgeCameraSection,
   badgeCardSection,
@@ -45,7 +44,6 @@ export const appSchema = defineToolcraft({
           badgePhotoSection,
           badgeFerroSection,
           badgeFerroPlacementSection,
-          badgeArtworkSection,
           badgeLanyardSection,
           badgePhysicsSection,
           badgeCameraSection,

@@ -96,15 +96,6 @@ export const appControlSectionInventory: readonly ToolcraftControlSectionInvento
     workflowStage: "placement",
   },
   {
-    entity: "Card artwork",
-    entityId: "card-artwork",
-    finiteSelectors: [],
-    groupingReason: "Front and back artwork uploads replace the template design of the card faces.",
-    id: "artwork",
-    targets: [T.frontArt, T.backArt],
-    title: "Artwork",
-  },
-  {
     entity: "Lanyard",
     entityId: "lanyard",
     finiteSelectors: [
