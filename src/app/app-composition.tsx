@@ -8,11 +8,16 @@ import { BadgeCanvas } from "./badge/badge-canvas";
 import { badgeExportRenderer } from "./badge/badge-export";
 import { getBadgeSceneRect } from "./badge/badge-frame";
 import { requestBadgeDrop } from "./badge/badge-live";
-import { BADGE_DROP_ACTION } from "./badge/badge-params";
+import { BADGE_DROP_ACTION, BADGE_PRINT_ACTION } from "./badge/badge-params";
 import { badgePipelineRegistration } from "./badge/badge-pipeline";
+import { buildBadgePrintPack } from "./badge/badge-print";
+import { downloadBadgeFile } from "./badge/badge-print-download";
 
-export function handleBadgePanelAction({ action }: ToolcraftPanelActionContext): void {
+export function handleBadgePanelAction({ action, reportProgress, state }: ToolcraftPanelActionContext): Promise<void> | void {
   if (action.value === BADGE_DROP_ACTION.value) requestBadgeDrop();
+  if (action.value === BADGE_PRINT_ACTION.value) {
+    return buildBadgePrintPack(state, reportProgress).then((pack) => downloadBadgeFile(pack.blob, pack.fileName));
+  }
 }
 
 export const appComposition = composeToolcraftApp(appSchema, {

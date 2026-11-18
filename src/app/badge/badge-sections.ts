@@ -3,6 +3,7 @@ import type { ToolcraftControlSchema } from "@/toolcraft/runtime";
 import {
   BADGE_DEFAULTS as D,
   BADGE_DROP_ACTION,
+  BADGE_PRINT_ACTION,
   BADGE_RANGES as R,
   BADGE_ROLES,
   BADGE_TARGETS as T,
@@ -287,6 +288,23 @@ export const badgePhysicsSection: Section = {
   },
   id: "physics",
   title: "Physics",
+};
+
+export const badgePrintSection: Section = {
+  controls: {
+    printPack: {
+      actions: [{ ...BADGE_PRINT_ACTION }],
+      applicability: always,
+      description: "Downloads a ZIP with the 3D preview PNG and the flat front and back artwork (2560 x 3600, no rounded corners or slot).",
+      label: false,
+      performanceReason: "Renders the two card faces and one preview frame once per click.",
+      performanceRole: "responsiveness",
+      target: T.printPack,
+      type: "panelActions",
+    } as ToolcraftControlSchema,
+  },
+  id: "print-pack",
+  title: "Print pack",
 };
 
 export const badgeCameraSection: Section = {

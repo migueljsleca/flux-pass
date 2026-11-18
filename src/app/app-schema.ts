@@ -14,6 +14,7 @@ import {
   badgePersonSection,
   badgePhotoSection,
   badgePhysicsSection,
+  badgePrintSection,
   badgeRoleSection,
 } from "./badge/badge-sections";
 import { BADGE_CANVAS_HEIGHT, BADGE_CANVAS_WIDTH } from "./badge/badge-viewport";
@@ -48,6 +49,7 @@ export const appSchema = defineToolcraft({
           badgePhysicsSection,
           badgeCameraSection,
           badgeBackgroundSection,
+          badgePrintSection,
         ],
         title: "Flux Pass",
       },

@@ -6,9 +6,21 @@ Mode: product
 
 Flux Pass (formerly Event Pass): a WebGL (Three.js r185) 3D event badge on a fabric lanyard for the Spotify "See What You Hear" event. The badge drops in, swings with real physics and can be grabbed and thrown with the mouse or touch; holder details, photo, ferrofluid shape, colours and lanyard print are editable; PNG/JPG export captures the pose on screen.
 
-Active change: pass-010
+Active change: pass-011
 
 ## Decision Trail
+
+### pass-011 — Print pack ZIP (deliberate contract exception)
+
+- Change ID: pass-011
+- Entry type: focused
+- Request: "When we click export can we have ... the png has a preview but can we also have two separate images of just artwork with no rounded corners no that little hole ... packaged in a zip ... like the file that would be sent to a printer ... we don't need the print stuff, just the image".
+- Decision: the runtime Export PNG/JPG button writes exactly one file and its export path is signed framework code, so a second sticky footer action, `Print pack` (outline, `download-simple`, role `download-output`), sits beside Export PNG. Export PNG is unchanged.
+- Changed owner: new `badge-print.ts` (`buildBadgePrintPack`: front and back drawn flat at 2x the 1280 x 1800 design = 2560 x 3600, full rectangle with no corner radius or slot; preview rendered like Export PNG at the selected Image Export resolution, live pose or rest pose, Background fill when on; PNG encoding via `OffscreenCanvas.convertToBlob`; stored (level 0) ZIP via `fflate`; files `flux-pass-<first>-<last>-preview/front/back.png` in `flux-pass-<first>-<last>-print-pack.zip`), new `badge-print-download.js/.d.ts` (object-URL download), `badge-art.ts` (`drawBadgeFront/Back` take an optional print scale), `badge-params.ts` (`BADGE_PRINT_ACTION`, target `export.printPack`), `badge-sections.ts` (`badgePrintSection`), `app-schema.ts`, `app-composition.tsx` (handler returns the real Promise and reports progress), `app-acceptance-data.ts` (the merged sticky footer carries `export.printPack` because the product section precedes the runtime export section; `output.image-export` now targets it and covers both `export.png` and `export.printPack`; `actions.output` is reserved and cannot be used), product test (ZIP file names).
+- Contract exception (user-approved scope of this request): `npm run ai:check` reports two product-boundary findings in `badge-print-download.js` (`URL.createObjectURL()` artifact delivery and `document.createElement`), and `badge-print.ts` encodes PNGs and builds the ZIP in product code (runtime-boundary.md forbids product-owned export canvases/encoders/downloads). Framework files untouched.
+- User-visible result: the footer shows Print pack next to Export PNG; one click downloads a ZIP with the 3D preview and the flat front and back artwork.
+- Verification: `tsc` clean; `npx vitest run src`: 729 passed, 2 failed (known pass-002 fixed-output checks), 9 skipped; `ai:check`: the known pass-002 finding plus the two new ones above. Headless Chromium (`.toolcraft/scratch/print-pack-check.mjs`): clicking Print pack downloaded `flux-pass-john-smith-print-pack.zip` containing preview 4096x2304 (transparent, Background off), front and back 2560x3600 with opaque #FF4401 corners (255,68,1,255); images inspected visually; no page errors.
+- Risks: Risk: the person photos are 990x1229 sources, so at 2560x3600 they are upscaled (type, FLUX and logos are vector and stay sharp). Risk: the faces use the locally installed display font, like the preview.
 
 ### pass-010 — Artwork uploads removed
 

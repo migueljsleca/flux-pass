@@ -39,6 +39,8 @@ export const BADGE_TARGETS = {
   zoom: "view.zoom",
   cameraY: "view.cameraY",
   includeBackground: "export.includeBackground",
+  /** Sticky footer: Print pack sits first, so the merged footer (with Export PNG) carries this target. */
+  printPack: "export.printPack",
   background: "appearance.background",
 } as const;
 
@@ -152,6 +154,15 @@ export const BADGE_RANGES = {
 export const BADGE_TEXT_MAX_LENGTH = 40;
 
 export const BADGE_DROP_ACTION = { label: "Drop badge", value: "physics.drop" } as const;
+
+/** Sticky footer action that downloads the print pack ZIP (preview + flat front and back). */
+export const BADGE_PRINT_ACTION = {
+  icon: "download-simple",
+  label: "Print pack",
+  role: "download-output",
+  value: "export.printPack",
+  variant: "outline",
+} as const;
 
 type NumericKey = keyof typeof BADGE_RANGES;
 

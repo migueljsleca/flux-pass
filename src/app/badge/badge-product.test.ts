@@ -5,6 +5,7 @@ import { getBadgeCamera } from "./badge-camera";
 import { getBadgeRigLayouts } from "./badge-layout";
 import { getBadgeExportSupersample } from "./badge-export";
 import { getBadgeImageSize } from "./badge-media";
+import { getBadgePrintBaseName } from "./badge-print";
 import { getBadgeCoverZoom } from "./badge-viewport";
 import { BADGE_DEFAULTS, BADGE_TARGETS, readBadgeParams } from "./badge-params";
 import {
@@ -293,5 +294,13 @@ describe("badge framing and export", () => {
   it("caps decoded upload size and swaps sides on quarter turns", () => {
     expect(getBadgeImageSize(4000, 2000, 0)).toEqual({ height: 1024, width: 2048 });
     expect(getBadgeImageSize(400, 200, 90)).toEqual({ height: 400, width: 200 });
+  });
+});
+
+describe("badge print pack", () => {
+  it("names the ZIP files after the holder", () => {
+    expect(getBadgePrintBaseName("John", "Smith")).toBe("flux-pass-john-smith");
+    expect(getBadgePrintBaseName("  Zoë ", "O'Neil")).toBe("flux-pass-zoe-o-neil");
+    expect(getBadgePrintBaseName("", "")).toBe("flux-pass");
   });
 });

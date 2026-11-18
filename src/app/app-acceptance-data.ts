@@ -4,7 +4,7 @@ import type {
   ToolcraftTransferMode,
 } from "./acceptance/types";
 import { appSchema } from "./app-schema";
-import { BADGE_DROP_ACTION, BADGE_ROLES, BADGE_TARGETS as T } from "./badge/badge-params";
+import { BADGE_DROP_ACTION, BADGE_PRINT_ACTION, BADGE_ROLES, BADGE_TARGETS as T } from "./badge/badge-params";
 import { BADGE_FERRO_IDS, BADGE_PERSON_IDS } from "./badge/badge-presets";
 import { BADGE_THEME_IDS } from "./badge/badge-theme";
 import { BADGE_PHYSICS_TARGET } from "./badge/badge-pipeline";
@@ -258,19 +258,21 @@ const badgeAcceptance: readonly ToolcraftComponentAcceptance[] = [
     userAction: "Select 2K, 4K and 8K.",
   },
   {
-    actionCoverage: ["export.png"],
+    actionCoverage: ["export.png", BADGE_PRINT_ACTION.value],
     automated: true,
     automatedTestName: "badge image export renders the badge at the selected resolution",
     browser: { budget: "extended-io", file: spec, testName: "browser acceptance: export image" },
     componentType: "panelActions",
     evidence: "exported-bytes",
     exportArtifactCoverage: "all-required-image-export-behavior",
-    expectedObservable: "PNG and JPG exports decode at the selected size with the badge where it hangs in the preview.",
+    expectedObservable:
+      "PNG and JPG exports decode at the selected size with the badge where it hangs in the preview; Print pack downloads a ZIP with that preview as PNG plus the front and back artwork as full 2560 x 3600 rectangles.",
     fixture: "badge at rest export",
     id: "output.image-export",
     kind: "control",
-    target: "actions.output",
-    userAction: "Export PNG and JPG at 2K and inspect decoded pixels.",
+    // Print pack comes first in the sticky footer, so the merged footer carries its target.
+    target: T.printPack,
+    userAction: "Export PNG and JPG at 2K and inspect decoded pixels; click Print pack and unzip the download.",
   },
 ];
 

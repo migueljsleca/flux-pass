@@ -73,10 +73,11 @@ export const BADGE_DISPLAY_FONT = '"Neue Haas Grotesk Display Pro", "Helvetica N
 
 type Context = OffscreenCanvasRenderingContext2D;
 
-function createContext(width: number, height: number): [OffscreenCanvas, Context] {
-  const canvas = new OffscreenCanvas(width, height);
+function createContext(width: number, height: number, scale = 1): [OffscreenCanvas, Context] {
+  const canvas = new OffscreenCanvas(Math.round(width * scale), Math.round(height * scale));
   const context = canvas.getContext("2d");
   if (!context) throw new Error("Badge artwork needs a 2D canvas context.");
+  if (scale !== 1) context.scale(scale, scale);
   return [canvas, context];
 }
 
@@ -220,10 +221,10 @@ function drawFerro(context: Context, params: BadgeParams, images: BadgeArtImages
 }
 
 /** Front (Figma 215:1342): person, staggered name, centred role. */
-export function drawBadgeFront(params: BadgeParams, images: BadgeArtImages): OffscreenCanvas {
+export function drawBadgeFront(params: BadgeParams, images: BadgeArtImages, scale = 1): OffscreenCanvas {
   const W = BADGE_FACE_WIDTH;
   const H = BADGE_FACE_HEIGHT;
-  const [canvas, context] = createContext(W, H);
+  const [canvas, context] = createContext(W, H, scale);
   context.fillStyle = params.cardColor;
   context.fillRect(0, 0, W, H);
   // Layer order follows the Figma frame (bottom to top).
@@ -239,10 +240,10 @@ export function drawBadgeFront(params: BadgeParams, images: BadgeArtImages): Off
 }
 
 /** Back (Figma 226:831): FLUX at the top, the chosen ferrofluid large over it, presented-by bottom right. */
-export function drawBadgeBack(params: BadgeParams, images: BadgeArtImages): OffscreenCanvas {
+export function drawBadgeBack(params: BadgeParams, images: BadgeArtImages, scale = 1): OffscreenCanvas {
   const W = BADGE_FACE_WIDTH;
   const H = BADGE_FACE_HEIGHT;
-  const [canvas, context] = createContext(W, H);
+  const [canvas, context] = createContext(W, H, scale);
   context.fillStyle = params.cardColor;
   context.fillRect(0, 0, W, H);
   drawFlux(context, params);
